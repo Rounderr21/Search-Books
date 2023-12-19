@@ -11,10 +11,10 @@ const PORT = process.env.PORT || 3001;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-// Create an instance of ApolloServer
+// Creates an instance of ApolloServer
 const server = new ApolloServer({
-  typeDefs, // Your GraphQL schema
-  resolvers, // Your GraphQL resolvers
+  typeDefs, 
+  resolvers, 
 });
 const startApolloServer = async () => {
   await server.start();
@@ -24,8 +24,7 @@ server.applyMiddleware({ app });
 
 // If we're in production, serve client/build as static assets
 if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, '../client/dist/index.html')));
-
+  app.use(express.static(path.join(__dirname, '../client/build')));
 }
 
 app.use(routes);
